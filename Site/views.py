@@ -1,12 +1,20 @@
 from django.shortcuts import render
 
+from Site.models import Departamento, Produto
+
 # Create your views here.
 
 def index(request):
     return render(request,'index.html')
 
 def produto_lista(request):
-    return render(request, 'produtos.html')
+    produtos = Produto.objects.all()
+    context = {
+        'produtos': produtos,
+        'nome_categoria' : "Todos os Produtos"
+
+    }
+    return render(request, 'produtos.html', context)
 
 def produto_detalhe(request):
     return render(request, 'produto_detalhes.html')
@@ -19,3 +27,6 @@ def cadastro(request):
 
 def contato(request):
     return render(request, 'contato.html')
+
+def produto_lista_por_id(request, id):
+    return render(request, 'produtos.html')
