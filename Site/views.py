@@ -29,4 +29,12 @@ def contato(request):
     return render(request, 'contato.html')
 
 def produto_lista_por_id(request, id):
-    return render(request, 'produtos.html')
+    departamentos = Departamento.objects.all()
+    produtos_por_departamento = Produto.objects.filter(departamento_id = id)
+    categoria = departamentos.get(id = id).nome
+    context = {
+        'departamentos': departamentos,
+        'produtos': produtos_por_departamento,
+        'nome_categoria': categoria
+    }
+    return render(request, 'produtos.html', context)
