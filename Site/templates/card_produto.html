@@ -16,11 +16,11 @@
                 <!-- Product reviews-->
                 <div class="d-flex justify-content-center small text-warning mb-2">
                     
-                    <div class="bi-star-fill"></div>
-                    <div class="bi-star-fill"></div>
-                    <div class="bi-star-fill"></div>
-                    <div class="bi-star"></div>
-                    <div class="bi-star"></div>
+                    {% for i in prod.get_estrelas %}
+                        <div class="bi-star-fill"></div>
+                    {% endfor %}
+                    
+                    
                 </div>
                 <!-- Product price-->
                 R$ {{ prod.preco}}
@@ -28,7 +28,7 @@
         </div>
         <!-- Product actions-->
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'produto_detalhe'%}">Ver Produto</a></div>
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'produto_detalhe' id=prod.id|default:0 %}">Ver Produto</a></div>
         </div>
     </div>
 </div>

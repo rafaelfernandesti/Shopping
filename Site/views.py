@@ -16,7 +16,7 @@ def produto_lista(request):
     }
     return render(request, 'produtos.html', context)
 
-def produto_detalhe(request):
+def produto_detalhe(request, id):
     return render(request, 'produto_detalhes.html')
 
 def institucional(request):
