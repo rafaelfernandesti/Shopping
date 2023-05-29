@@ -5,19 +5,28 @@ from Site.models import Departamento, Produto
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    produtos_em_destaque = Produto.objects.filter(destaque = True)
+    context = {
+        'produtos' : produtos_em_destaque,
+    }
+    return render(request,'index.html', context)
 
 def produto_lista(request):
     produtos = Produto.objects.all()
     context = {
         'produtos': produtos,
         'nome_categoria' : "Todos os Produtos"
-
     }
     return render(request, 'produtos.html', context)
 
 def produto_detalhe(request, id):
-    return render(request, 'produto_detalhes.html')
+    produto_selecionado = Produto.objects.get(id = id)
+    produtos_relacionados = Produto.objects.filter(departamento_id = produto_selecionado.departamento.id)
+    context = {
+        'produto_selecionado': produto_selecionado,
+        'produtos_relacionados': produtos_relacionados
+    }
+    return render(request, 'produto_detalhes.html', context)
 
 def institucional(request):
     return render(request, 'empresa.html')

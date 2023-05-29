@@ -19,6 +19,8 @@
                     <!-- Inicio Produtos -->
                     {% for prod in produtos %}
                         {% include 'card_produto.html' %}
+                        {% empty %}
+                        <p class="lead fw-normal mb-0">Nenhum produto para este departamento</p>
                     {% endfor %}
                     <!-- termino produtos-->
                 </div>
