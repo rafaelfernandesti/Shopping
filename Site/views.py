@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from Site.forms import ClienteForm
 
-from Site.models import Departamento, Produto
+from Site.models import Departamento, Produto, Cliente
 
 # Create your views here.
 
@@ -32,7 +33,18 @@ def institucional(request):
     return render(request, 'empresa.html')
 
 def cadastro(request):
-    return render(request, 'cadastro.html')
+    formulario = ClienteForm()
+    if request.method == "POST":
+        formulario = ClienteForm(request.POST)
+        if formulario.is_valid():
+            cliente = formulario.save()
+            formulario = ClienteForm()
+    else:
+        formulario = ClienteForm()
+    context = {
+        'form_cliente':formulario
+    }
+    return render(request, 'cadastro.html', context)
 
 def contato(request):
     return render(request, 'contato.html')

@@ -10,7 +10,14 @@
 </header>
 <section class="py-5">
     <div class="container">
-        {% lorem 5 p random %}
+        <form action="{% url 'cadastro' %}" method="POST">
+            {% comment %} a tag csrf a seguir gera uma chave que garante que o destino receba os dados originais {% endcomment %}
+            {% csrf_token %} 
+            <table class="table table-striped">
+            {{ form_cliente }}
+            </table>
+            <input class="btn btn-success" type="submit" value="Enviar">
+        </form>        
     </div>
 </section>
 {% endblock Conteudo %}
