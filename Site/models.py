@@ -30,14 +30,13 @@ class Produto(models.Model):
     def __str__(self):
         return self.nome
     
-    def max_estrelas(self):
-        return range(5)
-    
     def get_estrelas(self):
-        print(range(self.avaliacao))
+        print(self.avaliacao)
         return range(self.avaliacao)
     
-
+    def get_estrelasvazias(self):
+        return range((5-self.avaliacao))
+    
 class Cliente(models.Model):
     ESTADO_CIVIL = [
         ('SOL','Solteiro'),

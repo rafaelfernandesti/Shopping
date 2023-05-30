@@ -18,7 +18,9 @@
                     {% for i in prod.get_estrelas %}
                             <div class="bi-star-fill"></div>
                     {% endfor %}
-                    
+                    {% for i in prod.get_estrelasvazias %}
+                            <div class="bi-star"></div>
+                    {% endfor %}
                 </div>
                 <!-- Product price-->
                 R$ {{ prod.preco}}
