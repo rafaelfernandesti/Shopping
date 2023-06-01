@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from Site.forms import ClienteForm
-
+from Site.forms import ClienteForm, ContatoForm
 from Site.models import Departamento, Produto, Cliente
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -33,21 +33,47 @@ def institucional(request):
     return render(request, 'empresa.html')
 
 def cadastro(request):
+    mensagem =""
     formulario = ClienteForm()
+    #quando faço clique no botão de enviar
     if request.method == "POST":
         formulario = ClienteForm(request.POST)
-        if formulario.is_valid():
-            cliente = formulario.save()
-            formulario = ClienteForm()
-    else:
+        if formulario.is_valid(): #faz todas as validações
+            cliente = formulario.save() #salva dados na tabela
+            formulario = ClienteForm() #formulário vazio é devolvido
+            mensagem = "Cliente cadastrado com sucesso"
+    else: #quando carrego a página vazia
         formulario = ClienteForm()
     context = {
-        'form_cliente':formulario
+        'form_cliente':formulario,
+        'mensagem': mensagem
     }
     return render(request, 'cadastro.html', context)
 
 def contato(request):
-    return render(request, 'contato.html')
+    mensagem = ""
+    if request.method == "POST":
+        nome = request.POST['nome']
+        telefone = request.POST['telefone']
+        assunto = request.POST['assunto']
+        mensagem = request.POST['mensagem']
+        remetente = request.POST['email']
+        destinatario = ['profronicosta@gmail.com']
+        corpo = f"Nome: {nome} \nTelefone: {telefone}  \nMensagem: {mensagem}"
+    
+        try:
+            send_mail(assunto, corpo, remetente, destinatario )
+            retorno = 'E-mail enviado com sucesso!'
+        except:
+            retorno = 'Erro ao enviar e-mail!'
+    else:
+        formulario = ContatoForm()
+
+    context = {
+        'form_contato' : formulario,
+        'mensagem' : mensagem
+    }
+    return render(request, 'contato.html', context)
 
 def produto_lista_por_id(request, id):
     departamentos = Departamento.objects.all()
