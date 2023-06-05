@@ -58,16 +58,16 @@ def contato(request):
         assunto = request.POST['assunto']
         mensagem = request.POST['mensagem']
         remetente = request.POST['email']
-        destinatario = ['profronicosta@gmail.com']
+        destinatario = ['contato@shopping.com.br']
         corpo = f"Nome: {nome} \nTelefone: {telefone}  \nMensagem: {mensagem}"
     
         try:
-            send_mail(assunto, corpo, remetente, destinatario )
-            retorno = 'E-mail enviado com sucesso!'
+            send_mail(assunto, corpo, remetente, destinatario)
+            mensagem = 'E-mail enviado com sucesso!'
         except:
-            retorno = 'Erro ao enviar e-mail!'
-    else:
-        formulario = ContatoForm()
+            mensagem = 'Erro ao enviar e-mail!'
+    
+    formulario = ContatoForm()
 
     context = {
         'form_contato' : formulario,
