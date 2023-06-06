@@ -93,7 +93,7 @@ DATABASES = {
          'NAME': 'railway',
          'USER': 'root',
          'PASSWORD': 'DaD72kAErwwe0R8mLvRz',
-         'HOST': 'containers-us-west-141.railway.app',
+         'HOST': 'https://containers-us-west-141.railway.app',
          'PORT': '6796',
      }
 }
