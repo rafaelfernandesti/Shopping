@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,8 +26,10 @@ SECRET_KEY = 'django-insecure-ib^ileihg&771sdgw5wft3bq2g1@u5pz&%3q)d7fthf_!)-dg_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','127.0.0.1'] #asterisco indica que qualquer site é aceito. Usado temporariamente até ter o endereço correto.
 
+# Endereços aceitos para o envio de formulários
+CSRF_TRUSTED_ORIGINS  = ['*']
 
 # Application definition
 
@@ -77,23 +80,23 @@ WSGI_APPLICATION = 'Shopping.wsgi.application'
 #Database
 #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': BASE_DIR / 'db.sqlite3',
-     }
- }
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'djangodatabase',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
+#          'ENGINE': 'django.db.backends.sqlite3',
+#          'NAME': BASE_DIR / 'db.sqlite3',
+#      }
+#  }
+
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'railway',
+         'USER': 'root',
+         'PASSWORD': 'DaD72kAErwwe0R8mLvRz',
+         'HOST': 'containers-us-west-141.railway.app',
+         'PORT': '6796',
+     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -130,6 +133,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')	# static files do admin
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ] # static files do site
+
 MEDIA_URL = '/media/' #pasta que é usada para uploads de arquivos
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
