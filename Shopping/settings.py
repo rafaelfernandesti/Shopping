@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['web-production-f10a.up.railway.app','127.0.0.1'] #asterisco indica que qualquer site é aceito. Usado temporariamente até ter o endereço correto.
 
 # Endereços aceitos para o envio de formulários
-CSRF_TRUSTED_ORIGINS  = ['web-production-f10a.up.railway.app']
+CSRF_TRUSTED_ORIGINS  = []
 
 # Application definition
 
