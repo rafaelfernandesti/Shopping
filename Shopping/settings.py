@@ -26,10 +26,10 @@ SECRET_KEY = 'django-insecure-ib^ileihg&771sdgw5wft3bq2g1@u5pz&%3q)d7fthf_!)-dg_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://web-production-f10a.up.railway.app','127.0.0.1'] #asterisco indica que qualquer site é aceito. Usado temporariamente até ter o endereço correto.
+ALLOWED_HOSTS = ['https://web-production-f10a.up.railway.app/','127.0.0.1'] #asterisco indica que qualquer site é aceito. Usado temporariamente até ter o endereço correto.
 
 # Endereços aceitos para o envio de formulários
-CSRF_TRUSTED_ORIGINS  = ['https://web-production-f10a.up.railway.app']
+CSRF_TRUSTED_ORIGINS  = ['https://web-production-f10a.up.railway.app/']
 
 # Application definition
 
